@@ -231,3 +231,28 @@ body.light-mode .sidebar button {
   font-weight: bold;
   cursor: pointer;
 }
+.emoji-panel {
+  display: none;
+  position: absolute;
+  bottom: 70px;
+  right: 30px;
+  background-color: rgba(0,0,0,0.9);
+  padding: 10px;
+  border-radius: 10px;
+  width: 250px;
+  max-height: 200px;
+  overflow-y: auto;
+  flex-wrap: wrap;
+  z-index: 1000;
+}
+
+.emoji-panel span {
+  cursor: pointer;
+  font-size: 1.5em;
+  margin: 5px;
+  transition: transform 0.2s;
+}
+
+.emoji-panel span:hover {
+  transform: scale(1.3);
+}
