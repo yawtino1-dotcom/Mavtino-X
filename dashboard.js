@@ -42,3 +42,75 @@ const toggleTheme = document.getElementById('toggleTheme');
 toggleTheme.addEventListener('click', () => {
   document.body.classList.toggle('light-mode');
 });
+// Chat logic
+const contacts = document.querySelectorAll('.contact');
+const chatWith = document.getElementById('chatWith');
+const chatMessages = document.getElementById('chatMessages');
+const messageInput = document.getElementById('messageInput');
+const sendBtn = document.getElementById('sendBtn');
+const typingIndicator = document.getElementById('typingIndicator');
+const imageInput = document.getElementById('imageInput');
+
+let activeContact = null;
+
+// Switch active contact
+contacts.forEach(contact => {
+  contact.addEventListener('click', () => {
+    contacts.forEach(c => c.classList.remove('active-contact'));
+    contact.classList.add('active-contact');
+    activeContact = contact.dataset.name;
+    chatWith.textContent = activeContact;
+    chatMessages.innerHTML = ''; // clear previous chat for demo
+  });
+});
+
+// Typing indicator simulation
+messageInput.addEventListener('input', () => {
+  if(activeContact) {
+    typingIndicator.textContent = Typing...;
+    setTimeout(() => { typingIndicator.textContent = ''; }, 1000);
+  }
+});
+
+// Send message
+sendBtn.addEventListener('click', () => {
+  if(!activeContact) return alert("Select a contact first!");
+  const msgText = messageInput.value.trim();
+  const file = imageInput.files[0];
+
+  if(msgText === '' && !file) return;
+
+  let msgDiv = document.createElement('div');
+  msgDiv.classList.add('message', 'sent');
+
+  if(file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const img = document.createElement('img');
+      img.src = e.target.result;
+      img.style.maxWidth = '200px';
+      img.style.borderRadius = '8px';
+      msgDiv.appendChild(img);
+      chatDivAppend(msgDiv);
+    }
+    reader.readAsDataURL(file);
+  }
+
+  if(msgText) {
+    msgDiv.textContent = msgText;
+    const statusSpan = document.createElement('span');
+    statusSpan.classList.add('status');
+    statusSpan.textContent = '✓'; // sent
+    msgDiv.appendChild(statusSpan);
+    chatDivAppend(msgDiv);
+  }
+
+  messageInput.value = '';
+  imageInput.value = '';
+});
+
+// Append message and scroll
+function chatDivAppend(div) {
+  chatMessages.appendChild(div);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
