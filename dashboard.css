@@ -1,0 +1,126 @@
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #0a0a0a;
+  color: #f0f0f0;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #0f0f3f;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid gold;
+}
+
+.sidebar h2 {
+  color: gold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.sidebar h2 .capital-x {
+  color: white;
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+.sidebar ul.menu {
+  list-style: none;
+  flex-grow: 1;
+}
+
+.sidebar ul.menu li {
+  padding: 12px 10px;
+  cursor: pointer;
+  border-radius: 8px;
+  margin: 5px 0;
+  transition: 0.3s;
+}
+
+.sidebar ul.menu li.active,
+.sidebar ul.menu li:hover {
+  background-color: gold;
+  color: darkblue;
+  font-weight: bold;
+}
+
+.sidebar button {
+  margin-top: 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: gold;
+  color: darkblue;
+  cursor: pointer;
+}
+
+/* Main Content */
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background: linear-gradient(135deg, #0a0a0a, #0f0f3f);
+}
+
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+.contacts-list {
+  list-style: none;
+  margin-top: 15px;
+}
+
+.contact {
+  padding: 10px;
+  background-color: rgba(255, 215, 0, 0.1);
+  margin: 5px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact:hover {
+  background-color: gold;
+  color: darkblue;
+  font-weight: bold;
+}
+
+/* Dark/Light Mode */
+body.light-mode {
+  background-color: #f0f0f0;
+  color: #0a0a0a;
+}
+
+body.light-mode .sidebar {
+  background-color: #d4d4f0;
+  color: darkblue;
+  border-right: 2px solid darkblue;
+}
+
+body.light-mode .sidebar ul.menu li.active,
+body.light-mode .sidebar ul.menu li:hover {
+  background-color: darkblue;
+  color: gold;
+}
+
+body.light-mode .sidebar button {
+  background-color: darkblue;
+  color: gold;
+}
