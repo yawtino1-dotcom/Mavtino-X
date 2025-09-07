@@ -82,3 +82,29 @@
   <script src="dashboard.js"></script>
 </body>
 </html>
+<!-- Contacts List + Chat Window -->
+<div id="contactsSection" class="section active">
+  <div class="contacts-container">
+    <!-- Contact List -->
+    <ul class="contacts-list">
+      <li class="contact" data-name="Alice">Alice</li>
+      <li class="contact" data-name="Bob">Bob</li>
+      <li class="contact" data-name="Charlie">Charlie</li>
+      <li class="contact" data-name="David">David</li>
+    </ul>
+
+    <!-- Chat Window -->
+    <div class="chat-window">
+      <div class="chat-header">
+        <h4 id="chatWith">Select a contact</h4>
+        <p id="typingIndicator"></p>
+      </div>
+      <div class="chat-messages" id="chatMessages"></div>
+      <div class="chat-input">
+        <input type="file" id="imageInput" accept="image/*">
+        <input type="text" id="messageInput" placeholder="Type a message...">
+        <button id="sendBtn">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
