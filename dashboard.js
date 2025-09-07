@@ -203,3 +203,26 @@ function simulateStatus(messageDiv) {
     statusSpan.style.color = 'blue';
   }, 2000);
 }
+ // Emoji picker
+const emojiBtn = document.getElementById('emojiBtn');
+const emojiPanel = document.getElementById('emojiPanel');
+const messageInputField = document.getElementById('messageInput');
+
+// List of emojis (sample)
+const emojis = ["😀","😂","😍","😎","🥰","👍","🙏","💪","🔥","🌟","🎉","💖","🥳","😜","🤩"];
+
+// Generate emojis in panel
+emojis.forEach(e => {
+  const span = document.createElement('span');
+  span.textContent = e;
+  span.addEventListener('click', () => {
+    messageInputField.value += e; // add emoji to input
+    emojiPanel.style.display = 'none'; // close panel
+  });
+  emojiPanel.appendChild(span);
+});
+
+// Toggle emoji panel
+emojiBtn.addEventListener('click', () => {
+  emojiPanel.style.display = emojiPanel.style.display === 'flex' ? 'none' : 'flex';
+});
