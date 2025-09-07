@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAVTINO X</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background animation container -->
+    <div class="background-animation"></div>
+
+    <!-- Login/Signup Box -->
+    <div class="auth-container">
+        <h1>MAVTINO <span class="capital-x">X</span></h1>
+        <div class="auth-toggle">
+            <button id="loginBtn" class="active">Login</button>
+            <button id="signupBtn">Sign Up</button>
+        </div>
+        <form id="authForm">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p class="theme-toggle">🌗 <span id="toggleTheme">Dark/Light Mode</span></p>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
