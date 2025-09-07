@@ -1,258 +1,47 @@
-/* Reset & Base */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
 body {
-  display: flex;
-  height: 100vh;
-  overflow: hidden;
-  background-color: #0a0a0a;
-  color: #f0f0f0;
-}
-
-/* Sidebar */
-.sidebar {
-  width: 250px;
-  background-color: #0f0f3f;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  border-right: 2px solid gold;
-}
-
-.sidebar h2 {
+  font-family: Arial, sans-serif;
+  background-color: #001f3f;
   color: gold;
-  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.auth-container {
+  background-color: rgba(0,0,0,0.85);
+  padding: 30px;
+  border-radius: 12px;
+  width: 350px;
   text-align: center;
 }
 
-.sidebar h2 .capital-x {
-  color: white;
-  margin-left: 5px;
-  font-weight: bold;
+.auth-container h1 {
+  margin-bottom: 20px;
 }
 
-.sidebar ul.menu {
-  list-style: none;
-  flex-grow: 1;
-}
-
-.sidebar ul.menu li {
-  padding: 12px 10px;
-  cursor: pointer;
-  border-radius: 8px;
-  margin: 5px 0;
-  transition: 0.3s;
-}
-
-.sidebar ul.menu li.active,
-.sidebar ul.menu li:hover {
-  background-color: gold;
-  color: darkblue;
-  font-weight: bold;
-}
-
-.sidebar button {
-  margin-top: 20px;
+.auth-container input {
+  width: 90%;
   padding: 10px;
-  border: none;
-  border-radius: 8px;
-  background-color: gold;
-  color: darkblue;
-  cursor: pointer;
-}
-
-/* Main Content */
-.main-content {
-  flex-grow: 1;
-  padding: 20px;
-  overflow-y: auto;
-  background: linear-gradient(135deg, #0a0a0a, #0f0f3f);
-}
-
-.section {
-  display: none;
-}
-
-.section.active {
-  display: block;
-}
-
-.contacts-list {
-  list-style: none;
-  margin-top: 15px;
-}
-
-.contact {
-  padding: 10px;
-  background-color: rgba(255, 215, 0, 0.1);
-  margin: 5px 0;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.contact:hover {
-  background-color: gold;
-  color: darkblue;
-  font-weight: bold;
-}
-
-/* Dark/Light Mode */
-body.light-mode {
-  background-color: #f0f0f0;
-  color: #0a0a0a;
-}
-
-body.light-mode .sidebar {
-  background-color: #d4d4f0;
-  color: darkblue;
-  border-right: 2px solid darkblue;
-}
-
-body.light-mode .sidebar ul.menu li.active,
-body.light-mode .sidebar ul.menu li:hover {
-  background-color: darkblue;
-  color: gold;
-}
-
-body.light-mode .sidebar button {
-  background-color: darkblue;
-  color: gold;
-}
-.contacts-container {
-  display: flex;
-  gap: 20px;
-}
-
-/* Contact List */
-.contacts-list {
-  list-style: none;
-  width: 200px;
-  background-color: rgba(255,215,0,0.1);
-  border-radius: 8px;
-  padding: 10px;
-  overflow-y: auto;
-  height: 500px;
-}
-
-.contacts-list .contact {
-  padding: 10px;
-  cursor: pointer;
+  margin: 10px 0;
   border-radius: 6px;
-  margin: 5px 0;
-  transition: 0.3s;
-}
-
-.contacts-list .contact:hover,
-.contacts-list .contact.active-contact {
-  background-color: gold;
-  color: darkblue;
-  font-weight: bold;
-}
-
-/* Chat Window */
-.chat-window {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  background-color: rgba(0,0,0,0.2);
-  border-radius: 10px;
-  height: 500px;
-  padding: 10px;
-}
-
-.chat-header {
-  border-bottom: 1px solid gold;
-  padding-bottom: 5px;
-}
-
-.chat-messages {
-  flex-grow: 1;
-  overflow-y: auto;
-  margin-top: 10px;
-}
-
-.message {
-  max-width: 60%;
-  padding: 10px;
-  border-radius: 10px;
-  margin: 5px 0;
-  position: relative;
-}
-
-.sent {
-  background-color: gold;
-  color: darkblue;
-  align-self: flex-end;
-}
-
-.received {
-  background-color: darkblue;
-  color: gold;
-  align-self: flex-start;
-}
-
-.message .status {
-  font-size: 0.7em;
-  position: absolute;
-  bottom: -15px;
-  right: 5px;
-  color: white;
-}
-
-.chat-input {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.chat-input input[type="text"] {
-  flex-grow: 1;
-  padding: 10px;
-  border-radius: 8px;
   border: none;
 }
 
-.chat-input input[type="file"] {
-  padding: 5px;
-}
-
-.chat-input button {
-  padding: 10px 15px;
+.auth-container button {
+  width: 95%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 6px;
   border: none;
-  border-radius: 8px;
   background-color: gold;
   color: darkblue;
   font-weight: bold;
   cursor: pointer;
 }
-.emoji-panel {
-  display: none;
-  position: absolute;
-  bottom: 70px;
-  right: 30px;
-  background-color: rgba(0,0,0,0.9);
-  padding: 10px;
-  border-radius: 10px;
-  width: 250px;
-  max-height: 200px;
-  overflow-y: auto;
-  flex-wrap: wrap;
-  z-index: 1000;
-}
 
-.emoji-panel span {
+.auth-container span {
   cursor: pointer;
-  font-size: 1.5em;
-  margin: 5px;
-  transition: transform 0.2s;
-}
-
-.emoji-panel span:hover {
-  transform: scale(1.3);
+  color: lightblue;
 }
