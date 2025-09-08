@@ -1,199 +1,91 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MAVTINO X Dashboard</title>
-  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="style.css"> <!-- if you have a CSS file -->
 </head>
 <body>
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <h2>MAVTINO <span class="capital-x">X</span></h2>
-    <ul class="menu">
-      <li id="contactsTab" class="active">Contacts</li>
-      <li id="groupsTab">Groups</li>
-      <li id="storiesTab">Stories</li>
-      <li id="newsfeedTab">Newsfeed</li>
-      <li id="gamesTab">Games</li>
-      <li id="marketplaceTab">Marketplace</li>
-      <li id="walletTab">Wallet</li>
-      <li id="liveTab">Live Streaming</li>
+  <!-- Website UI -->
+  <div id="sidebar">
+    <h2>MAVTINO X</h2>
+    <ul>
+      <li>Contacts</li>
+      <li>Groups</li>
+      <li>Stories</li>
+      <li>Newsfeed</li>
+      <li>Games</li>
+      <li>Marketplace</li>
+      <li>Wallet</li>
+      <li>Live Streaming</li>
     </ul>
-    <button id="toggleTheme">🌗 Dark/Light Mode</button>
+    <button id="modeToggle">Dark/Light Mode</button>
   </div>
 
-  <!-- Main Content Area -->
-  <div class="main-content">
-    <!-- Contacts List -->
-    <div id="contactsSection" class="section active">
-      <h3>Contacts</h3>
-      <ul class="contacts-list">
-        <li class="contact">Alice</li>
-        <li class="contact">Bob</li>
-        <li class="contact">Charlie</li>
-        <li class="contact">David</li>
-      </ul>
-    </div>
+  <div id="main">
+    <h3>Stories</h3>
+    <p>User stories will appear here.</p>
 
-    <!-- Group Chats -->
-    <div id="groupsSection" class="section">
-      <h3>Groups</h3>
-      <p>Groups will appear here. Create your group!</p>
-    </div>
+    <h3>Newsfeed</h3>
+    <p>Posts, videos, and updates will appear here.</p>
 
-    <!-- Stories -->
-    <div id="storiesSection" class="section">
-      <h3>Stories</h3>
-      <p>User stories will appear here.</p>
-    </div>
+    <h3>Contacts</h3>
+    <ul>
+      <li class="contact">Alice</li>
+      <li class="contact">Bob</li>
+      <li class="contact">Charlie</li>
+      <li class="contact">David</li>
+    </ul>
 
-    <!-- Newsfeed -->
-    <div id="newsfeedSection" class="section">
-      <h3>Newsfeed</h3>
-      <p>Posts, videos, and updates will appear here.</p>
-    </div>
+    <h3>Chat</h3>
+    <p>Chat with: <span id="chatWith">None</span></p>
+    <div id="chatMessages"></div>
 
-    <!-- Games -->
-    <div id="gamesSection" class="section">
-      <h3>Games</h3>
-      <p>Play multiplayer games here.</p>
-    </div>
-
-    <!-- Marketplace -->
-    <div id="marketplaceSection" class="section">
-      <h3>Marketplace</h3>
-      <p>Buy and sell items directly on MAVTINO X.</p>
-    </div>
-
-    <!-- Wallet -->
-    <div id="walletSection" class="section">
-      <h3>Wallet</h3>
-      <p>Store money, send to friends, or withdraw.</p>
-    </div>
-
-    <!-- Live Streaming -->
-    <div id="liveSection" class="section">
-      <h3>Live Streaming</h3>
-      <p>Go live and interact with your audience.</p>
-    </div>
+    <input type="file" id="imageInput">
+    <input type="text" id="messageInput" placeholder="Type a message...">
+    <button id="sendBtn">Send</button>
   </div>
 
-  <script src="dashboard.js"></script>
+  <!-- ✅ Place all your JavaScript inside script tags -->
+  <script>
+    const contacts = document.querySelectorAll(".contact");
+    const chatWith = document.getElementById("chatWith");
+    const chatMessages = document.getElementById("chatMessages");
+    const messageInput = document.getElementById("messageInput");
+    const sendBtn = document.getElementById("sendBtn");
+    const typingIndicator = document.createElement("p");
+    typingIndicator.innerText = "Typing...";
+    typingIndicator.style.display = "none";
+    chatMessages.appendChild(typingIndicator);
+
+    let activeContact = null;
+
+    // Switch chat contact
+    contacts.forEach(contact => {
+      contact.addEventListener("click", () => {
+        contacts.forEach(c => c.classList.remove("active-contact"));
+        contact.classList.add("active-contact");
+        chatWith.textContent = contact.textContent;
+        activeContact = contact.textContent;
+        chatMessages.innerHTML = "";
+      });
+    });
+
+    // Send message
+    sendBtn.addEventListener("click", () => {
+      if (!activeContact) {
+        alert("Select a contact first!");
+        return;
+      }
+      const msgText = messageInput.value;
+      if (msgText.trim() === "") return;
+
+      const msgDiv = document.createElement("div");
+      msgDiv.textContent = msgText;
+      chatMessages.appendChild(msgDiv);
+      messageInput.value = "";
+    });
+  </script>
 </body>
 </html>
-<!-- Contacts List + Chat Window -->
-<div id="contactsSection" class="section active">
-  <div class="contacts-container">
-    <!-- Contact List -->
-    <ul class="contacts-list">
-      <li class="contact" data-name="Alice">Alice</li>
-      <li class="contact" data-name="Bob">Bob</li>
-      <li class="contact" data-name="Charlie">Charlie</li>
-      <li class="contact" data-name="David">David</li>
-    </ul>
-
-    <!-- Chat Window -->
-    <div class="chat-window">
-      <div class="chat-header">
-        <h4 id="chatWith">Select a contact</h4>
-        <p id="typingIndicator"></p>
-      </div>
-      <div class="chat-messages" id="chatMessages"></div>
-      <div class="chat-input">
-        <input type="file" id="imageInput" accept="image/*">
-        <input type="text" id="messageInput" placeholder="Type a message...">
-        <button id="sendBtn">Send</button>
-      </div>
-    </div>
-  </div>
-</div>
-// Chat logic
-const contacts = document.querySelectorAll('.contact');
-const chatWith = document.getElementById('chatWith');
-const chatMessages = document.getElementById('chatMessages');
-const messageInput = document.getElementById('messageInput');
-const sendBtn = document.getElementById('sendBtn');
-const typingIndicator = document.getElementById('typingIndicator');
-const imageInput = document.getElementById('imageInput');
-
-let activeContact = null;
-
-// Switch active contact
-contacts.forEach(contact => {
-  contact.addEventListener('click', () => {
-    contacts.forEach(c => c.classList.remove('active-contact'));
-    contact.classList.add('active-contact');
-    activeContact = contact.dataset.name;
-    chatWith.textContent = activeContact;
-    chatMessages.innerHTML = ''; // clear previous chat for demo
-  });
-});
-
-// Typing indicator simulation
-messageInput.addEventListener('input', () => {
-  if(activeContact) {
-    typingIndicator.textContent = Typing...;
-    setTimeout(() => { typingIndicator.textContent = ''; }, 1000);
-  }
-});
-
-// Send message
-sendBtn.addEventListener('click', () => {
-  if(!activeContact) return alert("Select a contact first!");
-  const msgText = messageInput.value.trim();
-  const file = imageInput.files[0];
-
-  if(msgText === '' && !file) return;
-
-  let msgDiv = document.createElement('div');
-  msgDiv.classList.add('message', 'sent');
-
-  // Image message
-  if(file) {
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      const img = document.createElement('img');
-      img.src = e.target.result;
-      img.style.maxWidth = '200px';
-      img.style.borderRadius = '8px';
-      msgDiv.appendChild(img);
-      chatDivAppend(msgDiv);
-      simulateStatus(msgDiv);
-    }
-    reader.readAsDataURL(file);
-  }
-
-  // Text message
-  if(msgText) {
-    msgDiv.textContent = msgText;
-    const statusSpan = document.createElement('span');
-    statusSpan.classList.add('status');
-    statusSpan.textContent = '✓'; // sent
-    msgDiv.appendChild(statusSpan);
-    chatDivAppend(msgDiv);
-    simulateStatus(msgDiv);
-  }
-
-  messageInput.value = '';
-  imageInput.value = '';
-});
-
-// Append message and scroll
-function chatDivAppend(div) {
-  chatMessages.appendChild(div);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
-// Simulate delivered and read ticks
-function simulateStatus(messageDiv) {
-  const statusSpan = messageDiv.querySelector('.status');
-  // Delivered after 1s
-  setTimeout(() => {
-    statusSpan.textContent = '✓✓';
-  }, 1000);
-  // Read after 2s
-  setTimeout(() => {
-    statusSpan.style.color = 'blue';
-  }, 2000);
-}
